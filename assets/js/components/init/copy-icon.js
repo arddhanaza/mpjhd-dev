@@ -4,7 +4,7 @@
 
 'use strict';
 
-var CopyIcon = (function () {
+var CopyIcon = (function() {
 
 	// Variables
 
@@ -15,7 +15,7 @@ var CopyIcon = (function () {
 	// Methods
 
 	function init($this) {
-		$this.tooltip().on('mouseleave', function () {
+		$this.tooltip().on('mouseleave', function() {
 			// Explicitly hide tooltip, since after clicking it remains
 			// focused (as it's a button), so tooltip would otherwise
 			// remain visible until focus is moved away
@@ -24,13 +24,13 @@ var CopyIcon = (function () {
 
 		var clipboard = new ClipboardJS($element);
 
-		clipboard.on('success', function (e) {
+		clipboard.on('success', function(e) {
 			$(e.trigger)
 				.attr('title', 'Copied!')
 				.tooltip('_fixTitle')
 				.tooltip('show')
 				.attr('title', 'Copy to clipboard')
-				.tooltip('_fixTitle');
+				.tooltip('_fixTitle')
 
 			e.clearSelection()
 		});

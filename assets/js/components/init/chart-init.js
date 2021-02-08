@@ -4,7 +4,7 @@
 
 'use strict';
 
-var Charts = (function () {
+var Charts = (function() {
 
 	// Variable
 
@@ -12,7 +12,7 @@ var Charts = (function () {
 	var mode = 'light';//(themeMode) ? themeMode : 'light';
 	var fonts = {
 		base: 'Open Sans'
-	};
+	}
 
 	// Colors
 	var colors = {
@@ -97,11 +97,11 @@ var Charts = (function () {
 				},
 				doughnut: {
 					cutoutPercentage: 83,
-					legendCallback: function (chart) {
+					legendCallback: function(chart) {
 						var data = chart.data;
 						var content = '';
 
-						data.labels.forEach(function (label, index) {
+						data.labels.forEach(function(label, index) {
 							var bgColor = data.datasets[0].backgroundColor[index];
 
 							content += '<span class="chart-legend-item">';
@@ -114,7 +114,7 @@ var Charts = (function () {
 					}
 				}
 			}
-		};
+		}
 
 		// yAxes
 		Chart.scaleService.updateScaleDefaults('linear', {
@@ -133,7 +133,7 @@ var Charts = (function () {
 			ticks: {
 				beginAtZero: true,
 				padding: 10,
-				callback: function (value) {
+				callback: function(value) {
 					if (!(value % 10)) {
 						return value
 					}
@@ -173,7 +173,7 @@ var Charts = (function () {
 	function pushOptions(parent, options) {
 		for (var item in options) {
 			if (Array.isArray(options[item])) {
-				options[item].forEach(function (data) {
+				options[item].forEach(function(data) {
 					parent[item].push(data);
 				});
 			} else {
@@ -186,7 +186,7 @@ var Charts = (function () {
 	function popOptions(parent, options) {
 		for (var item in options) {
 			if (Array.isArray(options[item])) {
-				options[item].forEach(function (data) {
+				options[item].forEach(function(data) {
 					parent[item].pop();
 				});
 			} else {
@@ -242,14 +242,14 @@ var Charts = (function () {
 			var suffix = elem.data('suffix') ? elem.data('suffix') : '';
 
 			// Update ticks
-			$chart.options.scales.yAxes[0].ticks.callback = function (value) {
+			$chart.options.scales.yAxes[0].ticks.callback = function(value) {
 				if (!(value % 10)) {
 					return prefix + value + suffix;
 				}
-			};
+			}
 
 			// Update tooltips
-			$chart.options.tooltips.callbacks.label = function (item, data) {
+			$chart.options.tooltips.callbacks.label = function(item, data) {
 				var label = data.datasets[item.datasetIndex].label || '';
 				var yLabel = item.yLabel;
 				var content = '';
@@ -275,14 +275,14 @@ var Charts = (function () {
 
 	// Toggle options
 	$toggle.on({
-		'change': function () {
+		'change': function() {
 			var $this = $(this);
 
 			if ($this.is('[data-add]')) {
 				toggleOptions($this);
 			}
 		},
-		'click': function () {
+		'click': function() {
 			var $this = $(this);
 
 			if ($this.is('[data-update]')) {

@@ -1,12 +1,11 @@
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined'
-    && typeof require === 'function' ? factory(require('../moment')) :
-        typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-            factory(global.moment)
-}(this, (function (moment) {
-    'use strict';
+   typeof exports === 'object' && typeof module !== 'undefined'
+       && typeof require === 'function' ? factory(require('../moment')) :
+   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+   factory(global.moment)
+}(this, (function (moment) { 'use strict';
 
 
     var symbolMap = {
@@ -87,8 +86,8 @@
             y: 'មួយឆ្នាំ',
             yy: '%d ឆ្នាំ'
         },
-        dayOfMonthOrdinalParse: /ទី\d{1,2}/,
-        ordinal: 'ទី%d',
+        dayOfMonthOrdinalParse : /ទី\d{1,2}/,
+        ordinal : 'ទី%d',
         preparse: function (string) {
             return string.replace(/[១២៣៤៥៦៧៨៩០]/g, function (match) {
                 return numberMap[match];

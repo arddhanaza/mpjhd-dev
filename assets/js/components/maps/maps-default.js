@@ -20,7 +20,7 @@ function initMap() {
         scrollwheel: false,
         center: myLatlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-    };
+    }
 
     map = new google.maps.Map(map, mapOptions);
 
@@ -31,18 +31,18 @@ function initMap() {
         title: 'Hello World!'
     });
 
-    var contentString = '<div class="info-window-content"><h2>Argon Dashboard PRO</h2>' +
-        '<p>A beautiful premium dashboard for Bootstrap 4.</p></div>';
+    var contentString = '<div class="info-window-content"><h2>Argon Dashboard</h2>' +
+        '<p>A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</p></div>';
 
     var infowindow = new google.maps.InfoWindow({
         content: contentString
     });
 
-    google.maps.event.addListener(marker, 'click', function () {
+    google.maps.event.addListener(marker, 'click', function() {
         infowindow.open(map, marker);
     });
 }
 
-if ($map.length) {
+if($map.length) {
     google.maps.event.addDomListener(window, 'load', initMap);
 }

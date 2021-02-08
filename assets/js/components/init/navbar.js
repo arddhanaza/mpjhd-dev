@@ -4,7 +4,7 @@
 
 'use strict';
 
-var Navbar = (function () {
+var Navbar = (function() {
 
 	// Variables
 
@@ -18,27 +18,27 @@ var Navbar = (function () {
 		$this.closest($nav).find($collapse).not($this).collapse('hide');
 	}
 
-	function closeDropdown($this) {
-		var $dropdownMenu = $this.find('.dropdown-menu');
+    function closeDropdown($this) {
+        var $dropdownMenu = $this.find('.dropdown-menu');
 
-		$dropdownMenu.addClass('close');
+        $dropdownMenu.addClass('close');
 
-		setTimeout(function () {
-			$dropdownMenu.removeClass('close');
-		}, 200);
+    	setTimeout(function() {
+    		$dropdownMenu.removeClass('close');
+    	}, 200);
 	}
 
 
 	// Events
 
 	$collapse.on({
-		'show.bs.collapse': function () {
+		'show.bs.collapse': function() {
 			accordion($(this));
 		}
-	});
+	})
 
 	$dropdown.on({
-		'hide.bs.dropdown': function () {
+		'hide.bs.dropdown': function() {
 			closeDropdown($(this));
 		}
 	})
@@ -51,7 +51,7 @@ var Navbar = (function () {
 //
 
 
-var NavbarCollapse = (function () {
+var NavbarCollapse = (function() {
 
 	// Variables
 
@@ -74,16 +74,41 @@ var NavbarCollapse = (function () {
 
 	if ($collapse.length) {
 		$collapse.on({
-			'hide.bs.collapse': function () {
+			'hide.bs.collapse': function() {
 				hideNavbarCollapse($collapse);
 			}
-		});
+		})
 
 		$collapse.on({
-			'hidden.bs.collapse': function () {
+			'hidden.bs.collapse': function() {
 				hiddenNavbarCollapse($collapse);
 			}
 		})
 	}
+
+	var navbar_menu_visible = 0;
+
+	$( ".sidenav-toggler" ).click(function() {
+		if(navbar_menu_visible == 1){
+		  $('body').removeClass('nav-open');
+			navbar_menu_visible = 0;
+			$('.bodyClick').remove();
+
+		} else {
+
+		var div = '<div class="bodyClick"></div>';
+		$(div).appendTo('body').click(function() {
+				 $('body').removeClass('nav-open');
+					navbar_menu_visible = 0;
+					$('.bodyClick').remove();
+					
+			 });
+
+		 $('body').addClass('nav-open');
+			navbar_menu_visible = 1;
+
+		}
+
+	});
 
 })();

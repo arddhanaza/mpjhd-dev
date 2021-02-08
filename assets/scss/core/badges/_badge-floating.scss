@@ -4,14 +4,14 @@
 
 
 .btn {
-  .badge-floating {
-    position: absolute;
-    top: -50%;
-    transform: translateY(50%);
-    border: 3px solid;
+    .badge-floating {
+        position: absolute;
+        top: -50%;
+        transform: translateY(50%);
+        border: 3px solid;
 
-    &.badge:not(.badge-circle) {
-      transform: translate(147%, 50%);
+        &.badge:not(.badge-circle) {
+            transform: translate(147%, 50%);
+        }
     }
-  }
 }
