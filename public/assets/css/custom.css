@@ -1,0 +1,14 @@
+.select2-selection {
+  height: auto !important;
+}
+
+.select2-selection--single {
+  color: #8898aa !important;
+  border: 1px solid #dee2e6 !important;
+  border-radius: 0.25rem !important;
+  background-color: #fff !important;
+  background-clip: padding-box !important;
+  box-shadow: 0 3px 2px rgba(233, 236, 239, 0.05) !important;
+}
+
+/*# sourceMappingURL=custom.css.map */

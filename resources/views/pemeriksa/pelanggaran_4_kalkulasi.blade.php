@@ -39,14 +39,16 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form action="" method="post">
+                            @csrf
+                            @method('post')
                             <h6 class="heading-small text-muted mb-4">Nilai Akhir</h6>
                             <div class="pl-lg-4">
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label class="form-control-label" for="input-username">Nama Pegawai</label>
-                                            <input type="text" id="input-username" class="form-control" placeholder="Yusuf Sulaiman" disabled>
+                                            <input type="text" id="input-username" class="form-control" value="{{$data['id_pegawai']}}" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -54,7 +56,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label class="form-control-label" for="input-username">Nilai Pokok</label>
-                                            <input type="text" id="input-username" class="form-control" placeholder="30" disabled>
+                                            <input type="text" id="input-username" class="form-control" value="{{$data['nilai_pokok']}}" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -62,7 +64,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label class="form-control-label" for="input-username">Nilai Tambahan</label>
-                                            <input type="text" id="input-username" class="form-control" placeholder="30" disabled>
+                                            <input type="text" id="input-username" class="form-control" value="{{$data['nilai_tambahan']}}" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -70,7 +72,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label class="form-control-label" for="input-username">Nilai Akhir</label>
-                                            <input type="text" id="input-username" class="form-control" placeholder="60" disabled>
+                                            <input type="text" id="input-username" class="form-control" value="{{$data['nilai_akhir']}}" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -79,7 +81,7 @@
                                         <div class="form-group">
                                             <div class="col-12 text-right">
                                                 <a href="tambah pelanggaran 1.html" class="btn btn-sm btn-primary">Prev</a>
-                                                <a href="{{route('data_pelanggaran')}}" class="btn btn-sm btn-primary">Submit</a>
+                                                <button type="submit" class="btn btn-sm btn-primary">Submit</a>
                                             </div>
                                         </div>
                                     </div>

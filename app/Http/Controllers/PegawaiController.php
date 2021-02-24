@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PegawaiController extends Controller
 {
@@ -15,6 +16,14 @@ class PegawaiController extends Controller
     public function index()
     {
         //
+    }
+
+    public function load_data(Request $request){
+        if ($request->has('q')){
+            $cari = $request->q;
+            $data = DB::table('pegawai')->select('id_pegawai','nama')->where('nama', 'LIKE', '%'.$cari.'%')->get();
+            return response()->json($data);
+        }
     }
 
     /**
