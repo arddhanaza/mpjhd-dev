@@ -24,4 +24,5 @@ Route::get('/data_pelanggaran/tambah/1/cari',[\App\Http\Controllers\PegawaiContr
 Route::post('/data_pelanggaran/tambah/1/2/',[\App\Http\Controllers\PelanggaranController::class,'create_tingkat_hukuman'])->name('tambah_data_pelanggaran_tingkat_hukuman');
 Route::post('/data_pelanggaran/tambah/1/2/3/',[\App\Http\Controllers\PelanggaranController::class,'create_faktor_utama'])->name('tambah_data_pelanggaran_faktor_utama');
 Route::post('/data_pelanggaran/tambah/1/2/3/4/',[\App\Http\Controllers\PelanggaranController::class,'create_calculate'])->name('tambah_data_pelanggaran_calculate');
+Route::post('/data_pelanggaran/tambah/1/2/3/4/save',[\App\Http\Controllers\PelanggaranController::class,'store'])->name('save_all_data');
 
