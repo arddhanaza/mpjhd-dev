@@ -111,8 +111,8 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <div class="col-12 text-right">
-                                                <a href="tambah pelanggaran 1.html"
-                                                   class="btn btn-sm btn-primary">Prev</a>
+{{--                                                <a href="" onclick="window.history.back();"--}}
+{{--                                                   class="btn btn-sm btn-primary">Prev</a>--}}
                                                 <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                                             </div>
                                         </div>
@@ -124,4 +124,5 @@
                 </div>
             </div>
         </div>
+    </div>
 @endsection
