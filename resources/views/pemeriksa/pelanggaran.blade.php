@@ -6,7 +6,7 @@
             <div class="header-body">
                 <div class="row align-items-center py-4">
                     <div class="col-lg-6 col-7">
-                        <h6 class="h2 text-white d-inline-block mb-0">Pemeriksa</h6>
+                        <h6 class="h2 text-white d-inline-block mb-0">{{session(0)->status}}</h6>
                         <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                                 <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
@@ -71,20 +71,23 @@
                             </thead>
                             <tbody class="list">
                             @foreach($data_pelanggaran as $dpl)
-                            <tr>
-                                <td class="budget">{{$loop->index+1}}</td>
-                                <td>{{$dpl->nama_pegawai}}</td>
-                                <td>{{$dpl->nama_pemeriksa}}</td>
-                                <td>{{$dpl->kelompok_pelanggaran}}</td>
-                                <td>{{$dpl->nilai_akhir}}</td>
-                                <td>{{$dpl->kategori_komplin}}</td>
-                                <td>{{$dpl->jenis_hukuman}}</td>
-                                <td>{{$dpl->tanggal_pencatatan}}</td>
-                                <td>
-                                    <button type="button" class="btn-sm btn-light">Detail</button>
-                                    <button type="button" class="btn-sm btn-danger">Hapus</button>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td class="budget">{{$loop->index+1}}</td>
+                                    <td>{{$dpl->nama_pegawai}}</td>
+                                    <td>{{$dpl->nama_pemeriksa}}</td>
+                                    <td>{{$dpl->kelompok_pelanggaran}}</td>
+                                    <td>{{$dpl->nilai_akhir}}</td>
+                                    <td>{{$dpl->kategori_komplin}}</td>
+                                    <td>{{$dpl->jenis_hukuman}}</td>
+                                    <td>{{$dpl->tanggal_pencatatan}}</td>
+                                    <td>
+                                        <a href="{{route('lihat_detail_pelanggaran',$dpl->id_pelanggaran)}}"
+                                           type="button" class="btn-sm btn-light">Detail</a>
+                                        <a href="{{route('delete_pelanggaran',$dpl->id_pelanggaran)}}"
+                                           onclick="return confirm('Apakah Anda Yakin?')" type="button"
+                                           class="btn-sm btn-danger">Hapus</a>
+                                    </td>
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>

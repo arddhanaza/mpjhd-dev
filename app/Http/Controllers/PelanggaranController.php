@@ -6,13 +6,14 @@ use App\Models\FaktorPembobotanUtama;
 use App\Models\Nilai;
 use App\Models\Pelanggaran;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class PelanggaranController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -23,7 +24,7 @@ class PelanggaranController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -190,8 +191,8 @@ class PelanggaranController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -248,19 +249,20 @@ class PelanggaranController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Pelanggaran $pelanggaran
-     * @return \Illuminate\Http\Response
+     * @param Pelanggaran $pelanggaran
+     * @return Response
      */
-    public function show(Pelanggaran $pelanggaran)
+    public function show($id_pelanggaran)
     {
-        //
+        $pelanggaran = Pelanggaran::get_detail_data_pelanggaran($id_pelanggaran);
+        return view('pemeriksa.detail_pelanggaran', ['data_pelanggaran' => $pelanggaran]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\Pelanggaran $pelanggaran
-     * @return \Illuminate\Http\Response
+     * @param Pelanggaran $pelanggaran
+     * @return Response
      */
     public function edit(Pelanggaran $pelanggaran)
     {
@@ -270,9 +272,9 @@ class PelanggaranController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Pelanggaran $pelanggaran
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Pelanggaran $pelanggaran
+     * @return Response
      */
     public function update(Request $request, Pelanggaran $pelanggaran)
     {
@@ -282,11 +284,13 @@ class PelanggaranController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Pelanggaran $pelanggaran
-     * @return \Illuminate\Http\Response
+     * @param Pelanggaran $pelanggaran
+     * @return Response
      */
-    public function destroy(Pelanggaran $pelanggaran)
+    public function destroy($id_pelanggaran)
     {
-        //
+        $pelanggaran = Pelanggaran::find($id_pelanggaran);
+        $pelanggaran->delete();
+        return redirect(route('data_pelanggaran'));
     }
 }

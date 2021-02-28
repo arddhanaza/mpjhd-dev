@@ -69,21 +69,22 @@
                             </div>
                         </div>
                     </li>
-                        <!-- Sidenav toggler -->
+                    <!-- Sidenav toggler -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
                             <div class="media align-items-center">
                                 <div class="icon icon-shape text-white rounded-circle shadow">
                                     <i class="ni ni-circle-08"></i>
                                 </div>
                                 <div class="media-body d-none d-lg-block">
-                                    <span class="mb-0 text-sm mr-3  font-weight-bold">Presiden</span>
+                                    <span class="mb-0 text-sm mr-3  font-weight-bold">{{session(0)->nama}}</span>
                                 </div>
                             </div>
                         </a>
                         <div class="dropdown-menu  dropdown-menu-right ">
                             <div class="dropdown-divider"></div>
-                            <a href="#!" class="dropdown-item">
+                            <a href="{{route('logout')}}" class="dropdown-item">
                                 <i class="ni ni-user-run"></i>
                                 <span>Logout</span>
                             </a>

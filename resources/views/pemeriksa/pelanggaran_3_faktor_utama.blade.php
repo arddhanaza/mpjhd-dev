@@ -6,7 +6,7 @@
             <div class="header-body">
                 <div class="row align-items-center py-4">
                     <div class="col-lg-6 col-7">
-                        <h6 class="h2 text-white d-inline-block mb-0">Pemeriksa</h6>
+                        <h6 class="h2 text-white d-inline-block mb-0">{{session(0)->status}}</h6>
                         <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                                 <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
@@ -72,25 +72,35 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label" for="input-username">Frekuensi Pelanggaran Sama</label>
-                                            <select class="form-control form-control" name="faktor_pembobotan_2">
-                                                <option value="0.25">Hanya 1 (satu) kali melanggar pada pelanggaran yang sama (bobot 25%)</option>
-                                                <option value="0.5">Terdapat 2 (dua) butir yang dilanggar (bobot 50%)</option>
-                                                <option value="0.75">Terdapat 3 (tiga) butir yang dilanggar (bobot 75%)</option>
-                                                <option value="1">Terdapat 4 (empat) butir yang dilanggar (bobot 100%)</option>
-                                            </select>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="input-username">Frekuensi
+                                                    Pelanggaran Sama</label>
+                                                <select class="form-control form-control" name="faktor_pembobotan_2">
+                                                    <option value="0.25">Hanya 1 (satu) kali melanggar pada pelanggaran
+                                                        yang sama (bobot 25%)
+                                                    </option>
+                                                    <option value="0.5">2 (dua) kali melanggaran pada pelanggaran yang
+                                                        sama (bobot 50%)
+                                                    </option>
+                                                    <option value="0.75">3 (tiga) kali melanggar pada pelanggaran yang
+                                                        sama (bobot 75%)
+                                                    </option>
+                                                    <option value="1">Lebih dari 3 (tiga) kali melanggar pada
+                                                        pelanggaran yang sama (bobot 100%)
+                                                    </option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label" for="input-username">Latar Belakang Pelanggaran</label>
-                                            <select class="form-control form-control" name="faktor_pembobotan_3">
-                                                <option value="0.0">Terancam (bobot 0%)</option>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="input-username">Latar Belakang
+                                                    Pelanggaran</label>
+                                                <select class="form-control form-control" name="faktor_pembobotan_3">
+                                                    <option value="0.0">Terancam (bobot 0%)</option>
                                                 <option value="0.25">Ketidaksengajaan (bobot 25%)</option>
                                                 <option value="0.5">Terpaksa (bobot 50%)</option>
                                                 <option value="0.75">Terbujuk yang dilakukan dengan sadar (bobot 75%)</option>

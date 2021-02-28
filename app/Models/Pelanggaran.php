@@ -14,28 +14,51 @@ class Pelanggaran extends Model
 
     public static function get_data_pelanggarn(){
         $data =  DB::table('pelanggaran')
-            ->select('pemeriksa.nama as nama_pemeriksa','pegawai.nama as nama_pegawai','tanggal_pencatatan','kelompok_pelanggaran','nilai_akhir')
+            ->select('pelanggaran.id_pelanggaran', 'pemeriksa.nama as nama_pemeriksa', 'pegawai.nama as nama_pegawai', 'tanggal_pencatatan', 'kelompok_pelanggaran', 'nilai_akhir')
             ->join('pemeriksa','pelanggaran.id_pemeriksa','=','pemeriksa.id_pemeriksa')
             ->join('pegawai','pelanggaran.id_pegawai','=','pegawai.id_pegawai')
             ->join('nilai','pelanggaran.id_pelanggaran','=','nilai.id_pelanggaran')
             ->get();
-        for ($i = 0;$i < count($data);$i++){
+        for ($i = 0;$i < count($data);$i++) {
             $jenis_hukuman = self::get_jenis_hukuman($data[$i]->nilai_akhir);
             $data[$i]->jenis_hukuman = $jenis_hukuman[1];
             $data[$i]->kategori_komplin = $jenis_hukuman[0];
+            if ($data[$i]->kelompok_pelanggaran != 'I') {
+                $faktor = self::get_faktor_utama($data[0]->id_pelanggaran);
+                for ($j = 0; $j < count($faktor); $j++) {
+                    $data['0']->faktor_pembobotan[$j] = $faktor[$j]->faktor_pembobotan;
+                    $data['0']->persentase_pembobotan[$j] = $faktor[$j]->persentase_pembobotan;
+                }
+            }
         }
-
-        return($data);
+        return ($data);
     }
 
-    public static function get_jenis_hukuman($nilai_akhir){
-        $jenis_hukuman = array('Ringan-1'=>'Teguran Lisan',
-            'Ringan-2'=>'Teguran Tertulis',
-            'Ringan-3'=>'Pernyataan tidak puas secara tertulis',
-            'Sedang-1'=>'Penundaan kenaikan gaji berkala selama 1 tahun ',
-            'Sedang-2'=>'Penundaan kenaikan pangkat selama 1 tahun',
-            'Sedang-3'=>'Penurunan pangkat pada pangkat yang setingkat lebih rendah selama 1 tahun',
-            'Berat-1'=>'Penurunan pangkat pada pangkat yang setingkat lebih rendah selama 3 (tiga) tahun',
+    public static function get_detail_data_pelanggaran($id)
+    {
+        $data = self::get_data_pelanggarn()
+            ->where('id_pelanggaran', '=', $id);
+        return $data;
+    }
+
+    public static function get_faktor_utama($id_pelanggaran)
+    {
+        return DB::table('faktor_pembobotan_utama')
+            ->select('faktor_pembobotan', 'persentase_pembobotan')
+            ->where('id_pelanggaran', '=', $id_pelanggaran)
+            ->get();
+    }
+
+
+    public static function get_jenis_hukuman($nilai_akhir)
+    {
+        $jenis_hukuman = array('Ringan-1' => 'Teguran Lisan',
+            'Ringan-2' => 'Teguran Tertulis',
+            'Ringan-3' => 'Pernyataan tidak puas secara tertulis',
+            'Sedang-1' => 'Penundaan kenaikan gaji berkala selama 1 tahun ',
+            'Sedang-2' => 'Penundaan kenaikan pangkat selama 1 tahun',
+            'Sedang-3' => 'Penurunan pangkat pada pangkat yang setingkat lebih rendah selama 1 tahun',
+            'Berat-1' => 'Penurunan pangkat pada pangkat yang setingkat lebih rendah selama 3 (tiga) tahun',
             'Berat-2'=>'Pemindahan dalam rangka penurunan jabatan setingkat lebih rendah',
             'Berat-3'=>'Pembebasan dari jabatan ',
             'Berat-4'=>'Pemberhentian dengan hormat tidak atas permintaan sendiri sebagai PNS',
