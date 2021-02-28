@@ -35,13 +35,15 @@
                 <!-- Nav items -->
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::is('landing_page') ? 'active' : '' }}" href="{{route('landing_page')}}">
+                        <a class="nav-link disabled  {{ Route::is('landing_page') ? 'active' : '' }}"
+                           href="{{route('landing_page')}}">
                             <i class="ni ni-tv-2 text-primary"></i>
                             <span class="nav-link-text">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::is('data_pelanggaran') ? 'active' : '' }}" href="{{route('data_pelanggaran')}}">
+                        <a class="nav-link {{ Route::is('data_pelanggaran') ? 'active' : '' }}"
+                           href="{{route('data_pelanggaran')}}">
                             <i class="ni ni-bullet-list-67 text-primary"></i>
                             <span class="nav-link-text">Data Pelanggaran</span>
                         </a>

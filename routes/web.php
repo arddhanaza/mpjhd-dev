@@ -28,7 +28,7 @@ Route::group(['withoutMiddleware' => 'logged_in'], function () {
 Route::group(['middleware' => 'logged_in'], function () {
 //pelanggaran
     Route::group(['middleware' => 'is_pemeriksa'], function () {
-        Route::get('/', [PemeriksaController::class, 'index'])->name('landing_page');
+        Route::get('/dashboard', [PemeriksaController::class, 'index'])->name('landing_page');
 
         Route::get('/data_pelanggaran', [PelanggaranController::class, 'index'])->name('data_pelanggaran');
         Route::get('/data_pelanggaran/tambah/1/', [PelanggaranController::class, 'create_kelompok'])->name('tambah_data_pelanggaran_kelompok');
