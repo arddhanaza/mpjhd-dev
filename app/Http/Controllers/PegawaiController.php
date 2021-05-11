@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pegawai;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class PegawaiController extends Controller
 {
@@ -15,7 +17,8 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        //
+        $pegawai = Pegawai::all();
+        return view('pegawai.pegawai', ['data_pegawai' => $pegawai]);
     }
 
     public function load_data(Request $request){
@@ -33,7 +36,7 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        //
+        return view('pegawai.tambah_data_pegawai');
     }
 
     /**
@@ -44,7 +47,25 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pegawai = new Pegawai();
+        $user = new User();
+
+        $usenname = str_replace(' ', '', $request->nama_pegawai);
+        $usenname = strtolower($usenname);
+        $user->username = $usenname;
+        $user->password = md5('root');
+        $user->save();
+
+        $newest_id_user = $user->id_user;
+
+        $pegawai->nama = $request->nama_pegawai;
+        $pegawai->jabatan = $request->jabatan;
+        $pegawai->id_user = $newest_id_user;
+        $pegawai->save();
+
+
+
+        return redirect(route('data_pegawai'));
     }
 
     /**
@@ -64,9 +85,10 @@ class PegawaiController extends Controller
      * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pegawai $pegawai)
+    public function edit($id_pegawai)
     {
-        //
+        $pegawai = Pegawai::find($id_pegawai);
+        return view('pegawai.edit_data_pegawai',['data_pegawai'=>$pegawai]);
     }
 
     /**
@@ -76,9 +98,13 @@ class PegawaiController extends Controller
      * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pegawai $pegawai)
+    public function update(Request $request,$id_pegawai)
     {
-        //
+        $pegawai = Pegawai::find($id_pegawai);
+        $pegawai->nama = $request->nama_pegawai;
+
+        $pegawai->save();
+        return redirect(route('data_pegawai'));
     }
 
     /**
@@ -87,8 +113,10 @@ class PegawaiController extends Controller
      * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pegawai $pegawai)
+    public function destroy($id_pegawai)
     {
-        //
+        $pegawai = Pegawai::find($id_pegawai);
+        $pegawai->delete();
+        return  redirect(route('data_pegawai'));
     }
 }

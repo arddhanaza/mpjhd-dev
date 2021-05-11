@@ -16,6 +16,10 @@
     <!-- Argon CSS -->
     <link rel="stylesheet" href="{{asset('/assets/css/argon.css?v=1.2.0')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('/assets/css/custom.css')}}" type="text/css">
+    {{--Data Tables--}}
+    <link rel="stylesheet" href="{{asset('/assets/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('/assets/vendor/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('/assets/vendor/datatables.net-select-bs4/css/select.bootstrap4.min.css')}}" type="text/css">
     @yield('css')
 </head>
 
@@ -46,6 +50,13 @@
                            href="{{route('data_pelanggaran')}}">
                             <i class="ni ni-bullet-list-67 text-primary"></i>
                             <span class="nav-link-text">Data Pelanggaran</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('data_pegawai') ? 'active' : '' }}"
+                           href="{{route('data_pegawai')}}">
+                            <i class="ni ni-paper-diploma text-primary"></i>
+                            <span class="nav-link-text">Data Pegawai</span>
                         </a>
                     </li>
                 </ul>
@@ -85,6 +96,12 @@
                             </div>
                         </a>
                         <div class="dropdown-menu  dropdown-menu-right ">
+                            @if(session(0)->status == 'Pemeriksa')
+                            <a href="{{route('edit_profile',session(0)->id_pemeriksa)}}" class="dropdown-item">
+                                <i class="ni ni-atom"></i>
+                                <span>Edit Profile</span>
+                            </a>
+                            @endif
                             <div class="dropdown-divider"></div>
                             <a href="{{route('logout')}}" class="dropdown-item">
                                 <i class="ni ni-user-run"></i>
@@ -123,6 +140,15 @@
 <!-- Optional JS -->
 <script src="{{asset('/assets/vendor/chart.js/dist/Chart.min.js')}}"></script>
 <script src="{{asset('/assets/vendor/chart.js/dist/Chart.extension.js')}}"></script>
+{{--Data Tables--}}
+<script src="{{asset('/assets/vendor/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('/assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('/assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('/assets/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{asset('/assets/vendor/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
+<script src="{{asset('/assets/vendor/datatables.net-buttons/js/buttons.flash.min.js')}}"></script>
+<script src="{{asset('/assets/vendor/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
+<script src="{{asset('/assets/vendor/datatables.net-select/js/dataTables.select.min.js')}}"></script>
 <!-- Argon JS -->
 <script src="{{asset('/assets/js/argon.js?v=1.2.0')}}"></script>
 </body>

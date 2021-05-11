@@ -56,9 +56,10 @@ class PemeriksaController extends Controller
      * @param Pemeriksa $pemeriksa
      * @return Response
      */
-    public function edit(Pemeriksa $pemeriksa)
+    public function edit($id_pemeriksa)
     {
-        //
+        $pemeriksa = Pemeriksa::find($id_pemeriksa);
+        return view('pemeriksa.edit_pemeriksa',['data_pemeriksa'=>$pemeriksa]);
     }
 
     /**
@@ -68,9 +69,13 @@ class PemeriksaController extends Controller
      * @param Pemeriksa $pemeriksa
      * @return Response
      */
-    public function update(Request $request, Pemeriksa $pemeriksa)
+    public function update(Request $request, $id_pemeriksa)
     {
-        //
+        $pemeriksa = Pemeriksa::find($id_pemeriksa);
+        $pemeriksa->nama = $request->nama_pemeriksa;
+        $pemeriksa->save();
+
+        return redirect(route('data_pelanggaran'));
     }
 
     /**

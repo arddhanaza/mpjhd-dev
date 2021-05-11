@@ -29,7 +29,7 @@ class User extends Model
         $data = DB::table('user')
             ->where([
                 ['username', $username],
-                ['password', $password],
+                ['password', md5($password)],
             ])
             ->get();
         if (!$data->isEmpty()) {
