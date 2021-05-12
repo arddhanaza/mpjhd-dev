@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Jabatan;
+use App\Models\Pemeriksa;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,5 +16,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+        $this->call([
+            UserSeeder::class,
+            JabatanSeeder::class,
+            PemeriksaSeeder::class
+        ]);
     }
 }
