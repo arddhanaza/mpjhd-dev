@@ -16,7 +16,7 @@ class CreateNilai extends Migration
         Schema::create('nilai', function (Blueprint $table) {
             $table->bigIncrements('id_nilai');
             $table->foreignId('id_pelanggaran')
-                ->constrained('pelanggaran')
+                ->constrained('pelanggaran','id_pelanggaran')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->double('nilai_pokok');

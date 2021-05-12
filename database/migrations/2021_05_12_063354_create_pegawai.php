@@ -17,11 +17,11 @@ class CreatePegawai extends Migration
             $table->bigIncrements('id_pegawai');
             $table->string('nama');
             $table->foreignId('id_user')
-                ->constrained('user')
+                ->constrained('user','id_user')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->foreignId('id_jabatan')
-                ->constrained('jabatan')
+                ->constrained('jabatan','id_jabatan')
                 ->onUpdate('cascade')
                 ->onDelete('set null');
             $table->timestamps();

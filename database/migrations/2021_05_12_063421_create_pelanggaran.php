@@ -18,11 +18,11 @@ class CreatePelanggaran extends Migration
             $table->date('tanggal_pencatatan');
             $table->enum('kelompok_pelanggaran',['I','II','III','IV','V']);
             $table->foreignId('id_pegawai')
-                ->constrained('pegawai')
+                ->constrained('pegawai','id_pegawai')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreignId('id_pemeriksa')
-                ->constrained('pemeriksa')
+                ->constrained('pemeriksa','id_pemeriksa')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->timestamps();

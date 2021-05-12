@@ -16,7 +16,7 @@ class CreateFaktorPembobotanUtama extends Migration
         Schema::create('faktor_pembobotan_utama', function (Blueprint $table) {
             $table->bigIncrements('id_pembobotan');
             $table->foreignId('id_pelanggaran')
-                ->constrained('pelanggaran')
+                ->constrained('pelanggaran','id_pelanggaran')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->enum('faktor_pembobotan',['I','II','III','IV','V']);

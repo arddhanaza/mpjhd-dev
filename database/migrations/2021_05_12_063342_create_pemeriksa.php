@@ -18,7 +18,7 @@ class CreatePemeriksa extends Migration
             $table->string('nama');
             $table->foreignId('id_user')
                 ->references('id_user')->on('user')
-                ->constrained('user')
+                ->constrained('user','id_user')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->timestamps();
