@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pemeriksa;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -59,7 +60,8 @@ class PemeriksaController extends Controller
     public function edit($id_pemeriksa)
     {
         $pemeriksa = Pemeriksa::find($id_pemeriksa);
-        return view('pemeriksa.edit_pemeriksa',['data_pemeriksa'=>$pemeriksa]);
+        $user = \App\Models\User::find($pemeriksa->id_user);
+        return view('pemeriksa.edit_pemeriksa',['data_pemeriksa'=>$pemeriksa,'data_user'=>$user]);
     }
 
     /**
@@ -72,8 +74,21 @@ class PemeriksaController extends Controller
     public function update(Request $request, $id_pemeriksa)
     {
         $pemeriksa = Pemeriksa::find($id_pemeriksa);
+        $user = \App\Models\User::find($pemeriksa->id_user);
+
         $pemeriksa->nama = $request->nama_pemeriksa;
-        $pemeriksa->save();
+
+        $old_pass = $user->password;
+
+        $user->username = $request->username;
+        $user->password = md5($request->new_password);
+
+        if ($old_pass == md5($request->old_password)){
+            $pemeriksa->save();
+            $user->save();
+        } else{
+            return redirect(route('edit_profile',$id_pemeriksa));
+        }
 
         return redirect(route('data_pelanggaran'));
     }

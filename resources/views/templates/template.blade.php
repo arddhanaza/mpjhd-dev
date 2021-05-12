@@ -11,15 +11,19 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <!-- Icons -->
     <link rel="stylesheet" href="{{asset('/assets/vendor/nucleo/css/nucleo.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}"
+          type="text/css">
     <!-- Page plugins -->
     <!-- Argon CSS -->
     <link rel="stylesheet" href="{{asset('/assets/css/argon.css?v=1.2.0')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('/assets/css/custom.css')}}" type="text/css">
     {{--Data Tables--}}
-    <link rel="stylesheet" href="{{asset('/assets/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('/assets/vendor/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('/assets/vendor/datatables.net-select-bs4/css/select.bootstrap4.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('/assets/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}"
+          type="text/css">
+    <link rel="stylesheet" href="{{asset('/assets/vendor/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css')}}"
+          type="text/css">
+    <link rel="stylesheet" href="{{asset('/assets/vendor/datatables.net-select-bs4/css/select.bootstrap4.min.css')}}"
+          type="text/css">
     @yield('css')
 </head>
 
@@ -38,13 +42,15 @@
             <div class="collapse navbar-collapse" id="sidenav-collapse-main">
                 <!-- Nav items -->
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link disabled  {{ Route::is('landing_page') ? 'active' : '' }}"
-                           href="{{route('landing_page')}}">
-                            <i class="ni ni-tv-2 text-primary"></i>
-                            <span class="nav-link-text">Dashboard</span>
-                        </a>
-                    </li>
+                    @if(false)
+                        <li class="nav-item">
+                            <a class="nav-link disabled  {{ Route::is('landing_page') ? 'active' : '' }}"
+                               href="{{route('landing_page')}}">
+                                <i class="ni ni-tv-2 text-primary"></i>
+                                <span class="nav-link-text">Dashboard</span>
+                            </a>
+                        </li>
+                    @endif
                     <li class="nav-item">
                         <a class="nav-link {{ Route::is('data_pelanggaran') ? 'active' : '' }}"
                            href="{{route('data_pelanggaran')}}">
@@ -74,7 +80,8 @@
                 <!-- Navbar links -->
                 <ul class="navbar-nav align-items-center  ml-md-auto ">
                     <li class="nav-item d-xl-none">
-                        <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin" data-target="#sidenav-main">
+                        <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin"
+                             data-target="#sidenav-main">
                             <div class="sidenav-toggler-inner">
                                 <i class="sidenav-toggler-line"></i>
                                 <i class="sidenav-toggler-line"></i>
@@ -97,10 +104,10 @@
                         </a>
                         <div class="dropdown-menu  dropdown-menu-right ">
                             @if(session(0)->status == 'Pemeriksa')
-                            <a href="{{route('edit_profile',session(0)->id_pemeriksa)}}" class="dropdown-item">
-                                <i class="ni ni-atom"></i>
-                                <span>Edit Profile</span>
-                            </a>
+                                <a href="{{route('edit_profile',session(0)->id_pemeriksa)}}" class="dropdown-item">
+                                    <i class="ni ni-atom"></i>
+                                    <span>Edit Profile</span>
+                                </a>
                             @endif
                             <div class="dropdown-divider"></div>
                             <a href="{{route('logout')}}" class="dropdown-item">

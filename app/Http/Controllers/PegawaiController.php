@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\jabatan;
 use App\Models\Pegawai;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,8 +18,9 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        $pegawai = Pegawai::all();
-        return view('pegawai.pegawai', ['data_pegawai' => $pegawai]);
+        $pegawai = Pegawai::get_data_pegawai();
+        $jabatan = Jabatan::all();
+        return view('pegawai.pegawai', ['data_pegawai' => $pegawai,'data_jabatan'=>$jabatan]);
     }
 
     public function load_data(Request $request){
@@ -36,7 +38,8 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        return view('pegawai.tambah_data_pegawai');
+        $jabatan = jabatan::all();
+        return view('pegawai.tambah_data_pegawai',['data_jabatan'=>$jabatan]);
     }
 
     /**
@@ -59,7 +62,7 @@ class PegawaiController extends Controller
         $newest_id_user = $user->id_user;
 
         $pegawai->nama = $request->nama_pegawai;
-        $pegawai->jabatan = $request->jabatan;
+        $pegawai->id_jabatan = $request->jabatan;
         $pegawai->id_user = $newest_id_user;
         $pegawai->save();
 
@@ -87,8 +90,9 @@ class PegawaiController extends Controller
      */
     public function edit($id_pegawai)
     {
+        $jabatan = jabatan::all();
         $pegawai = Pegawai::find($id_pegawai);
-        return view('pegawai.edit_data_pegawai',['data_pegawai'=>$pegawai]);
+        return view('pegawai.edit_data_pegawai',['data_pegawai'=>$pegawai,'data_jabatan'=>$jabatan]);
     }
 
     /**
@@ -102,6 +106,7 @@ class PegawaiController extends Controller
     {
         $pegawai = Pegawai::find($id_pegawai);
         $pegawai->nama = $request->nama_pegawai;
+        $pegawai->id_jabatan = $request->jabatan;
 
         $pegawai->save();
         return redirect(route('data_pegawai'));

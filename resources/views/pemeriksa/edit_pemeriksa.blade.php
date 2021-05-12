@@ -46,6 +46,45 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <h6 class="heading-small text-muted mb-4">Data User Pemeriksa</h6>
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-username">Username Pemeriksa</label>
+                                            <input type="text" class="form-control" name="username"
+                                                   id="input-username" required value="{{$data_user->username}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-old-password">Old Password</label>
+                                            <input type="password" class="form-control" name="old_password"
+                                                   id="input-old-password" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input_new_password">New Password -  <span class="text-primary"> *optional</span></label>
+                                            <input type="password" class="form-control" name="new_password"
+                                                   id="input_new_password">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input_confirm_password">Confirm Password</label>
+                                            <input type="password" class="form-control" name="confirm_password"
+                                                   id="input_confirm_password">
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
@@ -62,4 +101,18 @@
             </div>
         </div>
     </div>
+    <script !src="">
+        var new_password = document.getElementById("input_new_password"),
+            confirm_password = document.getElementById("input_confirm_password");
+
+        function validatePassword() {
+            if (new_password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("Passwords Don't Match");
+            } else {
+                confirm_password.setCustomValidity('');
+            }
+        }
+        new_password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
+    </script>
 @endsection

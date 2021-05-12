@@ -54,5 +54,12 @@ Route::group(['middleware' => 'logged_in'], function () {
         Route::get('/data_pemeriksa/edit_profile/{id_pemeriksa}',[PemeriksaController::class,'edit'])->name('edit_profile');
         Route::post('/data_pemeriksa/edit_profile/{id_pemeriksa}/update',[PemeriksaController::class,'update'])->name('save_profile');
 
+        //jabatan
+        Route::get('/data_jabatan/create',[\App\Http\Controllers\JabatanController::class,'create'])->name('create_jabatan');
+        Route::post('/data_jabatan/store',[\App\Http\Controllers\JabatanController::class,'store'])->name('store_jabatan');
+        Route::get('/data_jabatan/edit/{id_jabatan}',[\App\Http\Controllers\JabatanController::class,'edit'])->name('edit_jabatan');
+        Route::post('/data_jabatan/edit/{id_jabatan}/update',[\App\Http\Controllers\JabatanController::class,'update'])->name('update_jabatan');
+        Route::get('/data_jabatan/delete/{id_jabatan}',[\App\Http\Controllers\JabatanController::class,'destroy'])->name('delete_jabatan');
+
     });
 });

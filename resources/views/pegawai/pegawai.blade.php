@@ -71,5 +71,48 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <!-- Card header -->
+                    <div class="card-header border-0">
+                        <div class="row align-items-center">
+                            <div class="col text-left">
+                                <a href="{{route('create_jabatan')}}" class="btn btn- btn-default">Tambah Data Jabatan</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Light table -->
+                    <div class="table-responsive py-4">
+                        <table class="table align-items-center table-flush" id="">
+                            <thead class="thead-light">
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Nama Jabatan</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody class="list">
+                            @foreach($data_jabatan as $jbt)
+                                <tr>
+                                    <td class="budget">{{$loop->index+1}}</td>
+                                    <td>{{$jbt->jabatan}}</td>
+                                    <td>
+                                        <a href="{{route('edit_jabatan',$jbt->id_jabatan)}}"
+                                           type="button" class="btn-sm btn-light">Edit</a>
+                                        <a href="{{route('delete_jabatan',$jbt->id_jabatan)}}"
+                                           onclick="return confirm('Apakah Anda Yakin?')" type="button"
+                                           class="btn-sm btn-danger">Hapus</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
