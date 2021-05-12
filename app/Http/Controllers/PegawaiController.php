@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\jabatan;
+use App\Models\Jabatan;
 use App\Models\Pegawai;
 use App\Models\User;
 use Illuminate\Http\Request;
