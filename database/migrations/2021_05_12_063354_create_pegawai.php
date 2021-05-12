@@ -23,7 +23,7 @@ class CreatePegawai extends Migration
             $table->foreignId('id_jabatan')
                 ->constrained('jabatan','id_jabatan')
                 ->onUpdate('cascade')
-                ->onDelete('set null');
+                ->nullOnDelete();
             $table->timestamps();
         });
     }
