@@ -14,9 +14,9 @@ class PemeriksaSeeder extends Seeder
      */
     public function run()
     {
-        $user_id = DB::table('user')->select('id')->get();
+        $user_id = DB::table('user')->select('id')->where('username','=','admin')->get();
         DB::table('pemeriksa')->insert([
-            'id_user' => $user_id,
+            'id_user' => $user_id[0]->id_user,
             'nama' => 'Admin'
         ]);
     }

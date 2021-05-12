@@ -21,6 +21,7 @@ class CreatePegawai extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->foreignId('id_jabatan')
+                ->nullable()
                 ->constrained('jabatan','id_jabatan')
                 ->onUpdate('cascade')
                 ->nullOnDelete();
