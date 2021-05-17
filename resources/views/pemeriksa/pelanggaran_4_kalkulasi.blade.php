@@ -49,7 +49,7 @@
                                         <div class="form-group">
                                             <label class="form-control-label" for="input-username">Nama Pegawai</label>
                                             <input type="text" id="input-username" class="form-control"
-                                                   value="{{$data['id_pegawai']}}" disabled>
+                                                   value="{{$data['nama']}}" disabled>
                                             <input type="hidden" id="input-username" class="form-control"
                                                    name="id_pegawai"
                                                    value="{{$data['id_pegawai']}}">

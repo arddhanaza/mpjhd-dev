@@ -14,10 +14,11 @@ class Pelanggaran extends Model
 
     public static function get_data_pelanggarn(){
         $data =  DB::table('pelanggaran')
-            ->select('pelanggaran.id_pelanggaran', 'pemeriksa.nama as nama_pemeriksa', 'pegawai.nama as nama_pegawai', 'tanggal_pencatatan', 'kelompok_pelanggaran', 'nilai_akhir')
+            ->select('pelanggaran.id_pelanggaran', 'pemeriksa.nama as nama_pemeriksa', 'pegawai.nama as nama_pegawai', 'tanggal_pencatatan', 'kelompok_pelanggaran', 'nilai_akhir','pelanggaran.created_at')
             ->join('pemeriksa','pelanggaran.id_pemeriksa','=','pemeriksa.id_pemeriksa')
             ->join('pegawai','pelanggaran.id_pegawai','=','pegawai.id_pegawai')
             ->join('nilai','pelanggaran.id_pelanggaran','=','nilai.id_pelanggaran')
+            ->orderBy('pelanggaran.created_at','desc')
             ->get();
         for ($i = 0;$i < count($data);$i++) {
             $jenis_hukuman = self::get_jenis_hukuman($data[$i]->nilai_akhir);
@@ -57,7 +58,7 @@ class Pelanggaran extends Model
             'Ringan-3' => 'Pernyataan tidak puas secara tertulis',
             'Sedang-1' => 'Penundaan kenaikan gaji berkala selama 1 tahun ',
             'Sedang-2' => 'Penundaan kenaikan pangkat selama 1 tahun',
-            'Sedang-3' => 'Penurunan pangkat pada pangkat yang setingkat lebih rendah selama 1 tahun',
+            'Sedang-3' => 'Penurunan pangkat pada pangkat yang setingkat lebih rendah selama 1 (satu) tahun',
             'Berat-1' => 'Penurunan pangkat pada pangkat yang setingkat lebih rendah selama 3 (tiga) tahun',
             'Berat-2'=>'Pemindahan dalam rangka penurunan jabatan setingkat lebih rendah',
             'Berat-3'=>'Pembebasan dari jabatan ',

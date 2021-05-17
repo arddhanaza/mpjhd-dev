@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\FaktorPembobotanUtama;
 use App\Models\Nilai;
+use App\Models\Pegawai;
 use App\Models\Pelanggaran;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -137,6 +138,8 @@ class PelanggaranController extends Controller
         $nilai_akhir = $nilai_pokok + $nilai_tambahan;
         $final_data = array('nilai_tambahan' => $nilai_tambahan, 'nilai_akhir' => $nilai_akhir);
         $final_data += $data;
+        $nama_pegawai = Pegawai::get_nama_pegawai_by_id($final_data['id_pegawai']);
+        $final_data += array('nama'=>$nama_pegawai[0]->nama);
         return view('pemeriksa.pelanggaran_4_kalkulasi', ['data' => $final_data]);
     }
 
@@ -146,8 +149,10 @@ class PelanggaranController extends Controller
             return 10;
         } elseif (($data >= 6 && $data <= 10) || ($data >= 21 && $data <= 25) || ($data >= 36 && $data <= 40)) {
             return 20;
-        } else {
+        } elseif (($data >= 11 && $data <= 15) || ($data >= 26 && $data <= 30) || ($data >= 41 && $data <= 45)){
             return 30;
+        }elseif ($data >= 46 ){
+            return 40;
         }
     }
 

@@ -18,4 +18,11 @@ class Pegawai extends Model
             ->get();
         return $data;
     }
+
+    public static function get_nama_pegawai_by_id($id){
+        return DB::table('pegawai')
+            ->select('nama')
+            ->where('id_pegawai','=',$id)
+            ->get();
+    }
 }
