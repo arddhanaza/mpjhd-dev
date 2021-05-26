@@ -47,6 +47,15 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
+                                            <label class="form-control-label" for="input-nomor">Nomor Induk Pegawai</label>
+                                            <input type="number" class="form-control" name="nomor_pegawai"
+                                                   id="input-nomor" required minlength="5">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
                                             <label class="form-control-label" for="input-nama">Nama Pegawai</label>
                                             <input type="text" class="form-control" name="nama_pegawai"
                                                    id="input-nama" required>

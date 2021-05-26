@@ -61,11 +61,16 @@ class PegawaiController extends Controller
 
         $newest_id_user = $user->id_user;
 
+//        check if id exist
+        $cek_pegawai = Pegawai::find($request->nomor_pegawai);
+        if (isset($cek_pegawai)){
+            return redirect(route('tambah_data_pegawai'));
+        }
         $pegawai->nama = $request->nama_pegawai;
+        $pegawai->id_pegawai = $request->nomor_pegawai;
         $pegawai->id_jabatan = $request->jabatan;
         $pegawai->id_user = $newest_id_user;
         $pegawai->save();
-
 
 
         return redirect(route('data_pegawai'));

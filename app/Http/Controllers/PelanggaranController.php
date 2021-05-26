@@ -153,6 +153,8 @@ class PelanggaranController extends Controller
             return 30;
         }elseif ($data >= 46 ){
             return 40;
+        }else{
+            return 0;
         }
     }
 
